@@ -1,0 +1,84 @@
+<!Doctype html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <style>
+        table,tr,th,td{border: 1px solid black;}
+    </style>
+</head>
+
+<body>
+<form name="ShoppingList">
+    <fieldset>
+        <legend>Shopping cart</legend>
+        <label>Item: <input id="Item-h" type="text" name="name"></label>
+        <label>Quantity: <input id="Quan-h" type="text" name="data"></label>
+
+        <input type="button" value="Add" onclick="Row_addition();">
+        <input type="button" value="Calculate Total Quantity" onclick="Calculations();">
+    </fieldset>
+    <div id="items_table">
+        <h2>Shopping List</h2>
+            <table id="apna">
+                <tr><th>Item</th><th>Quantity</th></tr>
+            </table>    
+        <br>
+        <label><input  type="button" value="Clear" onclick="Deletetion();">
+        * Delete all items</label>
+    </div>
+</form>
+
+<body>
+<script>
+
+    var arr = [];
+          
+        function Row_addition(){
+        var table=document.getElementById('apna');
+        table.insertRow().innerHTML="<td>" +document.getElementById('Item-h').value+ "</td>"+
+        "<td>" +document.getElementById('Quan-h').value+ "</td>";
+        arr.push(parseInt(document.getElementById('Quan-h').value,10));
+        
+        
+    }
+
+     function Calculations(){
+        var sum=0;
+        var table=document.getElementById('apna');
+        var row = table.insertRow();
+        var cell1 = row.insertCell();
+        var cell2 = row.insertCell();
+        for(var i in arr){
+            sum = sum + arr[i];
+        }
+        
+
+
+        cell1.appendChild(document.createTextNode("Total"));
+        cell2.appendChild(document.createTextNode(""+sum));  
+    }
+
+
+
+
+
+
+    function Deletetion(){
+        var my_table = document.getElementById("apna");
+
+        var rows= my_table.rows.length;
+        console.log(rows);
+        var i =0;
+        while (i<=rows){
+            document.getElementById('apna').deleteRow(0);
+            i++;
+        }
+         
+        }
+    
+
+
+
+
+        </script>
+</body>
